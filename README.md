@@ -22,7 +22,12 @@ A very simple navigational search homepage with a background using Bing's image 
 
 ![Interface Preview](https://raw.githubusercontent.com/es-v/SimpleSearch/main/preview.jpg)
 
+
+## Project Structure
+<pre>
 index.html            # Main Page
+Dockerfile            # Dockerfile
+nginx.conf            # Nginx Conf
 assets/
   img/                # Search Engine Icon
     baidu.ico
@@ -32,6 +37,7 @@ assets/
     searxng.png
   js/
     app.js            # Application Logic
+</pre>
 
 ## Customized
 
