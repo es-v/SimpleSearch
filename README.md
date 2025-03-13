@@ -66,8 +66,8 @@ Add a new bookmark item under the appropriate bookmark category:
 ```html
 <div class="bg-white rounded-lg shadow-sm p-3 card-hover mini-bookmark">
     <a href="https://example.com" target="_blank" class="flex flex-col items-center justify-center">
-        <img src="https://example.com/favicon.ico" alt="网站名称" class="w-8 h-8 mb-2">
-        <span class="text-xs font-medium text-gray-800">网站名称</span>
+        <img src="https://example.com/favicon.ico" alt="WebSite" class="w-8 h-8 mb-2">
+        <span class="text-xs font-medium text-gray-800">WebSite</span>
     </a>
 </div>
 ```
