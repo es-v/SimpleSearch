@@ -18,7 +18,9 @@ A very simple navigational search homepage with a background using Bing's image 
 - Tailwind CSS + Flowbite UI
 - Glass Morphism
 
-## Project Structure
+## Interface Preview
+
+![Interface Preview](https://raw.githubusercontent.com/es-v/SimpleSearch/main/preview.jpg)
 
 index.html            # Main Page
 assets/
