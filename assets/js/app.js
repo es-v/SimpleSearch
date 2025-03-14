@@ -8,6 +8,7 @@ const body = document.body;
 
 // App State
 let currentEngine = localStorage.getItem('defaultEngine') || 'google';
+const APP_VERSION = '2.0.2'; 
 
 // Search engine configurations
 const searchEngines = {
@@ -79,13 +80,193 @@ const searchEngines = {
     }
 };
 
+const bookmarks = {
+    tech: [
+        {
+            name: 'GitHub',
+            url: 'https://github.com',
+            img: 'https://github.com/favicon.ico'
+        },
+        {
+            name: 'LinuxDO',
+            url: 'https://linux.do',
+            img: 'https://linux.do/uploads/default/optimized/3X/9/d/9dd49731091ce8656e94433a26a3ef36062b3994_2_32x32.png'
+        },
+        {
+            name: '52Pojie',
+            url: 'https://www.52pojie.cn',
+            img: 'https://www.52pojie.cn/favicon.ico'
+        },
+        {
+            name: 'Zhihu',
+            url: 'https://www.zhihu.com',
+            img: 'https://www.zhihu.com/favicon.ico'
+        },
+        {
+            name: 'V2EX',
+            url: 'https://v2ex.com',
+            img: 'https://v2ex.com/favicon.ico'
+        }
+    ],
+    tools: [
+        {
+            name: 'ChatGPT',
+            url: 'https://chat.openai.com',
+            img: 'https://chat.openai.com/favicon.ico'
+        },
+        {
+            name: 'Grammarly',
+            url: 'https://www.grammarly.com',
+            img: 'https://static-web.grammarly.com/cms/master/public/favicon.ico'
+        },
+        {
+            name: 'Notion',
+            url: 'https://www.notion.so',
+            img: 'https://www.notion.com/front-static/favicon.ico'
+        },
+        {
+            name: 'Google Drive',
+            url: 'https://drive.google.com',
+            img: 'https://ssl.gstatic.com/docs/doclist/images/drive_2022q3_32dp.png'
+        },
+        {
+            name: 'DeepL',
+            url: 'https://www.deepl.com/translator',
+            img: 'https://www.deepl.com/img/favicon/favicon_96.png'
+        }
+    ],
+    social: [
+        {
+            name: 'Twitter',
+            url: 'https://x.com',
+            img: 'https://abs.twimg.com/favicons/twitter.3.ico'
+        },
+        {
+            name: 'Instagram',
+            url: 'https://www.instagram.com',
+            img: 'https://static.cdninstagram.com/rsrc.php/y4/r/QaBlI0OZiks.ico'
+        },
+        {
+            name: 'LinkedIn',
+            url: 'https://www.linkedin.com',
+            img: 'https://www.linkedin.com/favicon.ico'
+        },
+        {
+            name: 'Discord',
+            url: 'https://discord.com/app',
+            img: 'https://discord.com/assets/847541504914fd33810e70a0ea73177e.ico'
+        },
+        {
+            name: 'Reddit',
+            url: 'https://www.reddit.com',
+            img: 'https://www.reddit.com/favicon.ico'
+        }
+    ]
+};
+
+// Generate engine buttons dynamically
+function generateEngineButtons() {
+    const engineSelector = document.getElementById('engineSelector');
+    engineSelector.innerHTML = ''; // Clear existing buttons
+
+    for (const key in searchEngines) {
+        if (searchEngines.hasOwnProperty(key)) {
+            const engine = searchEngines[key];
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow';
+            button.setAttribute('data-engine', key);
+
+            const img = document.createElement('img');
+            // Prefer using local icons
+            img.src = `./assets/img/${key}.ico`;
+            img.alt = engine.name;
+            img.className = 'engine-logo';
+            // If the local icon fails to load, use the online URL.
+            img.onerror = function () {
+                this.src = engine.logo;
+                // If the online URL also fails to load, use the default search icon.
+                this.onerror = function() {
+                    this.src = './assets/img/search.svg';
+                };
+            };
+
+            const span = document.createElement('span');
+            span.textContent = engine.name;
+
+            button.appendChild(img);
+            button.appendChild(span);
+            engineSelector.appendChild(button);
+        }
+    }
+    
+    // Attach event listeners after generating buttons
+    attachEngineButtonEvents();
+}
+
+// Generate bookmark buttons dynamically
+function generateBookmarks() {
+    // Generate bookmarks for each category
+    for (const category in bookmarks) {
+        if (bookmarks.hasOwnProperty(category)) {
+            const bookmarkContainer = document.getElementById(`${category}Bookmarks`);
+            if (bookmarkContainer) {
+                bookmarkContainer.innerHTML = ''; // Clear existing bookmarks
+                
+                bookmarks[category].forEach(bookmark => {
+                    const bookmarkDiv = document.createElement('div');
+                    bookmarkDiv.className = 'bg-white rounded-lg shadow-sm p-3 card-hover mini-bookmark';
+                    
+                    const bookmarkLink = document.createElement('a');
+                    bookmarkLink.href = bookmark.url;
+                    bookmarkLink.target = '_blank';
+                    bookmarkLink.className = 'flex flex-col items-center justify-center';
+                    
+                    const bookmarkImg = document.createElement('img');
+                    bookmarkImg.src = bookmark.img;
+                    bookmarkImg.alt = bookmark.name;
+                    bookmarkImg.className = 'w-8 h-8 mb-2';
+                    // If the online URL icon fails to load, use the local web.svg as an alternative.
+                    bookmarkImg.onerror = function() {
+                        this.src = './assets/img/web.svg';
+                    };
+                    
+                    const bookmarkName = document.createElement('span');
+                    bookmarkName.className = 'text-xs font-medium text-gray-800';
+                    bookmarkName.textContent = bookmark.name;
+                    
+                    bookmarkLink.appendChild(bookmarkImg);
+                    bookmarkLink.appendChild(bookmarkName);
+                    bookmarkDiv.appendChild(bookmarkLink);
+                    bookmarkContainer.appendChild(bookmarkDiv);
+                });
+            }
+        }
+    }
+}
+
+// Attach event listeners to engine buttons
+function attachEngineButtonEvents() {
+    const engineButtons = document.querySelectorAll('.engine-button');
+    engineButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            currentEngine = this.getAttribute('data-engine');
+            localStorage.setItem('defaultEngine', currentEngine);
+            highlightSelectedEngine();
+        });
+    });
+}
+
 // Initialize app
 function init() {
+    generateEngineButtons();
+    generateBookmarks();
     loadDefaultEngine();
     highlightSelectedEngine();
     setDailyBingBackground();
     setupTransparentUI();
     setupBookmarkCategories();
+    // displayVersionInfo();
 }
 
 // Load default engine from local storage
@@ -285,6 +466,7 @@ function setupTransparentUI() {
 
 // Highlight the currently selected search engine
 function highlightSelectedEngine() {
+    const engineButtons = document.querySelectorAll('.engine-button');
     engineButtons.forEach(button => {
         const engine = button.getAttribute('data-engine');
         if (engine === currentEngine) {
@@ -334,6 +516,38 @@ function setupBookmarkCategories() {
     });
 }
 
+// Add a function to display the version number
+function displayVersionInfo() {
+    const footer = document.createElement('div');
+    footer.className = 'fixed bottom-2 right-2 flex items-center bg-black/20 backdrop-filter backdrop-blur-sm px-3 py-1 rounded-full hover:bg-black/30 transition-all';
+    
+    const versionSpan = document.createElement('span');
+    versionSpan.className = 'text-xs text-white/70 font-medium'; 
+    versionSpan.textContent = `v${APP_VERSION}`;
+    versionSpan.style.textShadow = '0 1px 2px rgba(0,0,0,0.3)';
+    
+    const githubLink = document.createElement('a');
+    githubLink.href = 'https://github.com/vsar/SimpleSearch';
+    githubLink.target = '_blank';
+    githubLink.className = 'ml-2 text-white/80 hover:text-white transition-colors';
+    githubLink.title = 'View on GitHub';
+    githubLink.style.textShadow = '0 1px 2px rgba(0,0,0,0.3)'; 
+    
+    const githubIcon = document.createElement('span');
+    githubIcon.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+    `;
+    
+    githubLink.appendChild(githubIcon);
+    
+    footer.appendChild(versionSpan);
+    footer.appendChild(githubLink);
+    
+    document.body.appendChild(footer);
+}
+
 // Handle search form submission
 searchForm.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -346,16 +560,6 @@ searchForm.addEventListener('submit', function (e) {
     url.searchParams.append(engine.paramName, query);
 
     window.open(url.toString(), '_blank');
-});
-
-// Handle search engine selection
-engineSelector.addEventListener('click', function (e) {
-    const button = e.target.closest('.engine-button');
-    if (button) {
-        currentEngine = button.getAttribute('data-engine');
-        localStorage.setItem('defaultEngine', currentEngine);
-        highlightSelectedEngine();
-    }
 });
 
 // Home button functionality

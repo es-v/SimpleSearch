@@ -12,32 +12,6 @@
     <!-- Flowbite and Tailwind CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: { "50": "#eff6ff", "100": "#dbeafe", "200": "#bfdbfe", "300": "#93c5fd", "400": "#60a5fa", "500": "#3b82f6", "600": "#2563eb", "700": "#1d4ed8", "800": "#1e40af", "900": "#1e3a8a", "950": "#172554" }
-                    }
-                },
-                fontFamily: {
-                    'body': [
-                        'Inter',
-                        'ui-sans-serif',
-                        'system-ui',
-                        'sans-serif'
-                    ],
-                    'sans': [
-                        'Inter',
-                        'ui-sans-serif',
-                        'system-ui',
-                        'sans-serif'
-                    ]
-                }
-            }
-        }
-    </script> -->
     <style>
         :root {
             --primary-50: #eff6ff;
@@ -151,85 +125,7 @@
 
                 <!-- Search Engine Selector -->
                 <div class="flex flex-wrap gap-3 justify-center" id="engineSelector">
-                    <!-- You can log out of search engines you don't like and keep only the commonly used. -->
-                    <button type="button"
-                        class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
-                        data-engine="google">
-                        <!-- <img src="./assets/img/google.ico" alt="Google" class="engine-logo" onerror="this.style.display='none'"> -->
-                        <img src="./assets/img/google.ico" alt="Google" class="engine-logo"
-                            onerror="this.src='./assets/img/search.svg'">
-                        <span>Google</span>
-                    </button>
-                    <button type="button"
-                        class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
-                        data-engine="bing">
-                        <img src="./assets/img/bing.ico" alt="Bing" class="engine-logo"
-                            onerror="this.src='./assets/img/search.svg'">
-                        <span>Bing</span>
-                    </button>
-                    <button type="button"
-                        class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
-                        data-engine="yahoo">
-                        <img src="./assets/img/yahoo.ico" alt="Yahoo" class="engine-logo"
-                            onerror="this.src='./assets/img/search.svg'">
-                        <span>Yahoo</span>
-                    </button>
-                    <button type="button"
-                        class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
-                        data-engine="duckduckgo">
-                        <img src="./assets/img/duckduckgo.ico" alt="DuckDuckGo" class="engine-logo"
-                            onerror="this.src='./assets/img/search.svg'">
-                        <span>DuckDuckGo</span>
-                    </button>
-                    <button type="button"
-                        class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
-                        data-engine="feloai">
-                        <img src="./assets/img/feloai.svg" alt="FeloAI" class="engine-logo"
-                            onerror="this.src='./assets/img/search.svg'">
-                        <span>FeloAI</span>
-                    </button>
-                    <button type="button"
-                        class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
-                        data-engine="startpage">
-                        <img src="./assets/img/startpage.ico" alt="StartPage" class="engine-logo"
-                            onerror="this.src='./assets/img/search.svg'">
-                        <span>StartPage</span>
-                    </button>
-                    <button type="button"
-                        class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
-                        data-engine="ask">
-                        <img src="./assets/img/ask.ico" alt="Ask" class="engine-logo"
-                            onerror="this.src='./assets/img/ask.svg'">
-                        <span>Ask</span>
-                    </button>
-                    <button type="button"
-                        class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
-                        data-engine="searxng">
-                        <img src="./assets/img/searxng.png" alt="SearXNG" class="engine-logo"
-                            onerror="this.src='./assets/img/search.svg'">
-                        <span>SearXNG</span>
-                    </button>
-                    <button type="button"
-                        class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
-                        data-engine="baidu">
-                        <img src="./assets/img/baidu.ico" alt="Baidu" class="engine-logo"
-                            onerror="this.src='./assets/img/search.svg'">
-                        <span>Baidu</span>
-                    </button>
-                    <button type="button"
-                        class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
-                        data-engine="yandex">
-                        <img src="./assets/img/yandex.ico" alt="Yandex" class="engine-logo"
-                            onerror="this.src='./assets/img/search.svg'">
-                        <span>Yandex</span>
-                    </button>
-                    <button type="button"
-                        class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
-                        data-engine="metaso">
-                        <img src="./assets/img/metaso.ico" alt="MetaSo" class="engine-logo"
-                            onerror="this.src='./assets/img/search.svg'">
-                        <span>MetaSo</span>
-                    </button>
+                    <!-- The search engine button will be dynamically generated by JavaScript. -->
                 </div>
             </form>
         </div>
@@ -249,47 +145,7 @@
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 category-content"
                     id="techBookmarks">
-                    <div class="bg-white rounded-lg shadow-sm p-3 card-hover mini-bookmark">
-                        <a href="https://github.com" target="_blank" class="flex flex-col items-center justify-center">
-                            <img src="https://github.com/favicon.ico" alt="GitHub" class="w-8 h-8 mb-2"
-                                onerror="this.src='./assets/img/web.svg'">
-                            <span class="text-xs font-medium text-gray-800">GitHub</span>
-                        </a>
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow-sm p-3 card-hover mini-bookmark">
-                        <a href="https://linux.do" target="_blank" class="flex flex-col items-center justify-center">
-                            <img src="https://linux.do/uploads/default/optimized/3X/9/d/9dd49731091ce8656e94433a26a3ef36062b3994_2_32x32.png"
-                                alt="LinuxDO" class="w-8 h-8 mb-2" onerror="this.src='./assets/img/web.svg'">
-                            <span class="text-xs font-medium text-gray-800">LinuxDO</span>
-                        </a>
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow-sm p-3 card-hover mini-bookmark">
-                        <a href="https://www.52pojie.cn" target="_blank"
-                            class="flex flex-col items-center justify-center">
-                            <img src="https://www.52pojie.cn/favicon.ico" alt="52Pojie" class="w-8 h-8 mb-2"
-                                onerror="this.src='./assets/img/web.svg'">
-                            <span class="text-xs font-medium text-gray-800">52Pojie</span>
-                        </a>
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow-sm p-3 card-hover mini-bookmark">
-                        <a href="https://www.zhihu.com" target="_blank"
-                            class="flex flex-col items-center justify-center">
-                            <img src="https://www.zhihu.com/favicon.ico" alt="知乎" class="w-8 h-8 mb-2"
-                                onerror="this.src='./assets/img/web.svg'">
-                            <span class="text-xs font-medium text-gray-800">Zhihu</span>
-                        </a>
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow-sm p-3 card-hover mini-bookmark">
-                        <a href="https://v2ex.com" target="_blank" class="flex flex-col items-center justify-center">
-                            <img src="https://v2ex.com/favicon.ico" alt="V2EX" class="w-8 h-8 mb-2"
-                                onerror="this.src='./assets/img/web.svg'">
-                            <span class="text-xs font-medium text-gray-800">V2EX</span>
-                        </a>
-                    </div>
+                    <!-- Technical bookmarks will be dynamically generated by JavaScript. -->
                 </div>
             </div>
 
@@ -306,7 +162,7 @@
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 category-content"
                     id="toolsBookmarks">
-
+                    <!-- Tool category bookmarks will be dynamically generated by JavaScript. -->
                 </div>
             </div>
 
@@ -321,7 +177,7 @@
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 category-content"
                     id="socialBookmarks">
-
+                    <!-- Social media bookmarks will be dynamically generated by JavaScript. -->
                 </div>
             </div>
         </div>
