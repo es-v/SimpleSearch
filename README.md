@@ -18,6 +18,10 @@ A very simple navigational search homepage with a background using Bing's image 
 - Tailwind CSS + Flowbite UI
 - Glass Morphism
 
+## Online Preview
+
+https://es-v.github.io/SimpleSearch/
+
 ## Interface Preview
 
 ![Interface Preview](https://raw.githubusercontent.com/es-v/SimpleSearch/main/preview.jpg)
@@ -29,12 +33,9 @@ index.html            # Main Page
 Dockerfile            # Dockerfile
 nginx.conf            # Nginx Conf
 assets/
-  img/                # Search Engine Icon
-    baidu.ico
-    bing.ico
-    duckduckgo.ico
-    google.ico
-    searxng.png
+  img/                # Icon
+    web.svg
+    ...
   js/
     app.js            # Application Logic
 </pre>
@@ -59,6 +60,16 @@ const searchEngines = {
 
 Then add the corresponding button to the engine selector area in `index.html`.
 
+```html
+<!-- You can log out of search engines you don't like and keep only the commonly used. -->
+<button type="button"
+    class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
+    data-engine="newengine">
+    <img src="icon URL" alt="Engines Name" class="engine-logo" onerror="this.style.display='none'">
+    <span>Engines Name</span>
+</button>
+```
+
 ### Add new bookmark
 
 Add a new bookmark item under the appropriate bookmark category:
@@ -66,7 +77,7 @@ Add a new bookmark item under the appropriate bookmark category:
 ```html
 <div class="bg-white rounded-lg shadow-sm p-3 card-hover mini-bookmark">
     <a href="https://example.com" target="_blank" class="flex flex-col items-center justify-center">
-        <img src="https://example.com/favicon.ico" alt="WebSite" class="w-8 h-8 mb-2">
+        <img src="https://example.com/favicon.ico" alt="WebSite" class="w-8 h-8 mb-2" onerror="this.src='./assets/img/web.svg'">
         <span class="text-xs font-medium text-gray-800">WebSite</span>
     </a>
 </div>
@@ -74,4 +85,4 @@ Add a new bookmark item under the appropriate bookmark category:
 
 ## License
 
-MIT
+[MIT](https://raw.githubusercontent.com/es-v/SimpleSearch/main/LICENSE)

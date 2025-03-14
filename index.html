@@ -4,10 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Search Navigation">
+    <meta name="keywords" content="S1mpleSearch, Search Navigation, Search Engine, Quick Bookmarks">
     <title>Search Navigation</title>
+    <link rel="icon" href="./assets/img/search.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="./assets/img/search.svg">
     <!-- Flowbite and Tailwind CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -32,8 +37,58 @@
                 }
             }
         }
-    </script>
+    </script> -->
     <style>
+        :root {
+            --primary-50: #eff6ff;
+            --primary-100: #dbeafe;
+            --primary-200: #bfdbfe;
+            --primary-300: #93c5fd;
+            --primary-400: #60a5fa;
+            --primary-500: #3b82f6;
+            --primary-600: #2563eb;
+            --primary-700: #1d4ed8;
+            --primary-800: #1e40af;
+            --primary-900: #1e3a8a;
+            --primary-950: #172554;
+        }
+
+        body {
+            font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+        }
+
+        .bg-primary-500 {
+            background-color: var(--primary-500);
+        }
+
+        .bg-primary-600 {
+            background-color: var(--primary-600);
+        }
+
+        .bg-primary-700 {
+            background-color: var(--primary-700);
+        }
+
+        .hover\:bg-primary-700:hover {
+            background-color: var(--primary-700);
+        }
+
+        .focus\:ring-primary-300:focus {
+            --tw-ring-color: var(--primary-300);
+        }
+
+        .focus\:ring-primary-500:focus {
+            --tw-ring-color: var(--primary-500);
+        }
+
+        .focus\:border-primary-500:focus {
+            border-color: var(--primary-500);
+        }
+
+        .text-primary-600 {
+            color: var(--primary-600);
+        }
+
         .search-gradient {
             background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
             -webkit-background-clip: text;
@@ -64,7 +119,8 @@
         <header class="mb-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <h1 class="text-2xl font-bold mb-4 md:mb-0 text-gray-800">
-                    <span class="search-gradient">Simple</span>Search
+                    <a href="https://github.com/es-v/SimpleSearch/"><span
+                            class="search-gradient">Simple</span>Search</a>
                 </h1>
                 <nav class="w-full md:w-auto">
                     <div class="flex flex-col md:flex-row md:space-x-4">
@@ -95,35 +151,84 @@
 
                 <!-- Search Engine Selector -->
                 <div class="flex flex-wrap gap-3 justify-center" id="engineSelector">
+                    <!-- You can log out of search engines you don't like and keep only the commonly used. -->
                     <button type="button"
                         class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
                         data-engine="google">
-                        <img src="./assets/img/google.ico" alt="Google" class="engine-logo">
+                        <!-- <img src="./assets/img/google.ico" alt="Google" class="engine-logo" onerror="this.style.display='none'"> -->
+                        <img src="./assets/img/google.ico" alt="Google" class="engine-logo"
+                            onerror="this.src='./assets/img/search.svg'">
                         <span>Google</span>
                     </button>
                     <button type="button"
                         class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
                         data-engine="bing">
-                        <img src="./assets/img/bing.ico" alt="Bing" class="engine-logo">
+                        <img src="./assets/img/bing.ico" alt="Bing" class="engine-logo"
+                            onerror="this.src='./assets/img/search.svg'">
                         <span>Bing</span>
                     </button>
                     <button type="button"
                         class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
-                        data-engine="baidu">
-                        <img src="./assets/img/baidu.ico" alt="Baidu" class="engine-logo">
-                        <span>Baidu</span>
+                        data-engine="yahoo">
+                        <img src="./assets/img/yahoo.ico" alt="Yahoo" class="engine-logo"
+                            onerror="this.src='./assets/img/search.svg'">
+                        <span>Yahoo</span>
                     </button>
                     <button type="button"
                         class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
                         data-engine="duckduckgo">
-                        <img src="./assets/img/duckduckgo.ico" alt="DuckDuckGo" class="engine-logo">
+                        <img src="./assets/img/duckduckgo.ico" alt="DuckDuckGo" class="engine-logo"
+                            onerror="this.src='./assets/img/search.svg'">
                         <span>DuckDuckGo</span>
                     </button>
                     <button type="button"
                         class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
+                        data-engine="feloai">
+                        <img src="./assets/img/feloai.svg" alt="FeloAI" class="engine-logo"
+                            onerror="this.src='./assets/img/search.svg'">
+                        <span>FeloAI</span>
+                    </button>
+                    <button type="button"
+                        class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
+                        data-engine="startpage">
+                        <img src="./assets/img/startpage.ico" alt="StartPage" class="engine-logo"
+                            onerror="this.src='./assets/img/search.svg'">
+                        <span>StartPage</span>
+                    </button>
+                    <button type="button"
+                        class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
+                        data-engine="ask">
+                        <img src="./assets/img/ask.ico" alt="Ask" class="engine-logo"
+                            onerror="this.src='./assets/img/ask.svg'">
+                        <span>Ask</span>
+                    </button>
+                    <button type="button"
+                        class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
                         data-engine="searxng">
-                        <img src="./assets/img/searxng.png" alt="SearXNG" class="engine-logo">
+                        <img src="./assets/img/searxng.png" alt="SearXNG" class="engine-logo"
+                            onerror="this.src='./assets/img/search.svg'">
                         <span>SearXNG</span>
+                    </button>
+                    <button type="button"
+                        class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
+                        data-engine="baidu">
+                        <img src="./assets/img/baidu.ico" alt="Baidu" class="engine-logo"
+                            onerror="this.src='./assets/img/search.svg'">
+                        <span>Baidu</span>
+                    </button>
+                    <button type="button"
+                        class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
+                        data-engine="yandex">
+                        <img src="./assets/img/yandex.ico" alt="Yandex" class="engine-logo"
+                            onerror="this.src='./assets/img/search.svg'">
+                        <span>Yandex</span>
+                    </button>
+                    <button type="button"
+                        class="engine-button px-4 py-2 flex items-center justify-center rounded-full bg-white border border-gray-300 shadow-sm hover:shadow-md transition-shadow"
+                        data-engine="metaso">
+                        <img src="./assets/img/metaso.ico" alt="MetaSo" class="engine-logo"
+                            onerror="this.src='./assets/img/search.svg'">
+                        <span>MetaSo</span>
                     </button>
                 </div>
             </form>
@@ -132,74 +237,91 @@
         <!-- Quick Bookmarks Section -->
         <div class="mb-8">
             <h2 class="text-xl font-semibold mb-4 text-gray-700">Quick Bookmarks</h2>
-            
+
             <div class="mb-4 bookmark-category">
                 <div class="flex items-center cursor-pointer mb-2 category-header" data-category="tech">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 category-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 category-icon" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
                     </svg>
                     <h3 class="font-medium text-gray-800">Technical Website</h3>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 category-content" id="techBookmarks">
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 category-content"
+                    id="techBookmarks">
                     <div class="bg-white rounded-lg shadow-sm p-3 card-hover mini-bookmark">
                         <a href="https://github.com" target="_blank" class="flex flex-col items-center justify-center">
-                            <img src="https://github.com/favicon.ico" alt="GitHub" class="w-8 h-8 mb-2">
+                            <img src="https://github.com/favicon.ico" alt="GitHub" class="w-8 h-8 mb-2"
+                                onerror="this.src='./assets/img/web.svg'">
                             <span class="text-xs font-medium text-gray-800">GitHub</span>
                         </a>
                     </div>
 
                     <div class="bg-white rounded-lg shadow-sm p-3 card-hover mini-bookmark">
                         <a href="https://linux.do" target="_blank" class="flex flex-col items-center justify-center">
-                            <img src="https://linux.do/uploads/default/optimized/3X/9/d/9dd49731091ce8656e94433a26a3ef36062b3994_2_32x32.png" alt="LinuxDO" class="w-8 h-8 mb-2">
+                            <img src="https://linux.do/uploads/default/optimized/3X/9/d/9dd49731091ce8656e94433a26a3ef36062b3994_2_32x32.png"
+                                alt="LinuxDO" class="w-8 h-8 mb-2" onerror="this.src='./assets/img/web.svg'">
                             <span class="text-xs font-medium text-gray-800">LinuxDO</span>
                         </a>
                     </div>
 
                     <div class="bg-white rounded-lg shadow-sm p-3 card-hover mini-bookmark">
-                        <a href="https://www.52pojie.cn" target="_blank" class="flex flex-col items-center justify-center">
-                            <img src="https://www.52pojie.cn/favicon.ico" alt="52破解" class="w-8 h-8 mb-2">
+                        <a href="https://www.52pojie.cn" target="_blank"
+                            class="flex flex-col items-center justify-center">
+                            <img src="https://www.52pojie.cn/favicon.ico" alt="52Pojie" class="w-8 h-8 mb-2"
+                                onerror="this.src='./assets/img/web.svg'">
                             <span class="text-xs font-medium text-gray-800">52Pojie</span>
                         </a>
                     </div>
 
                     <div class="bg-white rounded-lg shadow-sm p-3 card-hover mini-bookmark">
-                        <a href="https://www.zhihu.com" target="_blank" class="flex flex-col items-center justify-center">
-                            <img src="https://www.zhihu.com/favicon.ico" alt="知乎" class="w-8 h-8 mb-2">
+                        <a href="https://www.zhihu.com" target="_blank"
+                            class="flex flex-col items-center justify-center">
+                            <img src="https://www.zhihu.com/favicon.ico" alt="知乎" class="w-8 h-8 mb-2"
+                                onerror="this.src='./assets/img/web.svg'">
                             <span class="text-xs font-medium text-gray-800">Zhihu</span>
                         </a>
                     </div>
 
                     <div class="bg-white rounded-lg shadow-sm p-3 card-hover mini-bookmark">
                         <a href="https://v2ex.com" target="_blank" class="flex flex-col items-center justify-center">
-                            <img src="https://v2ex.com/favicon.ico" alt="V2EX" class="w-8 h-8 mb-2">
+                            <img src="https://v2ex.com/favicon.ico" alt="V2EX" class="w-8 h-8 mb-2"
+                                onerror="this.src='./assets/img/web.svg'">
                             <span class="text-xs font-medium text-gray-800">V2EX</span>
                         </a>
                     </div>
                 </div>
             </div>
-            
+
             <div class="mb-4 bookmark-category">
                 <div class="flex items-center cursor-pointer mb-2 category-header" data-category="tools">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 category-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 category-icon" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                     <h3 class="font-medium text-gray-800">Common Tools</h3>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 category-content" id="toolsBookmarks">
-                    
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 category-content"
+                    id="toolsBookmarks">
+
                 </div>
             </div>
 
             <div class="mb-4 bookmark-category">
                 <div class="flex items-center cursor-pointer mb-2 category-header" data-category="social">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 category-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 category-icon" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
                     </svg>
                     <h3 class="font-medium text-gray-800">Social Media</h3>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 category-content" id="socialBookmarks">
-                    
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 category-content"
+                    id="socialBookmarks">
+
                 </div>
             </div>
         </div>

@@ -35,11 +35,47 @@ const searchEngines = {
         paramName: 'q',
         logo: 'https://duckduckgo.com/favicon.ico'
     },
+    yahoo: {
+        name: 'Yahoo',
+        url: 'https://search.yahoo.com/search',
+        paramName: 'q',
+        logo: 'https://search.yahoo.com/favicon.ico'
+    },
+    startpage: {
+        name: 'StartPage',
+        url: 'https://www.startpage.com/search',
+        paramName: 'q',
+        logo: 'https://www.startpage.com/favicon.ico'
+    },
+    ask: {
+        name: 'Ask',
+        url: 'https://www.ask.com/search',
+        paramName: 'q',
+        logo: 'https://www.ask.com/favicon.ico'
+    },
     searxng: {
         name: 'SearXNG',
         url: 'https://search.vsar.site/search',
         paramName: 'q',
         logo: 'https://search.vsar.site/favicon.ico'
+    },
+    feloai: {
+        name: 'FeloAI',
+        url: 'https://felo.ai/search',
+        paramName: 'q',
+        logo: 'https://felo.ai/icon.svg'
+    },
+    yandex: {
+        name: 'Yandex',
+        url: 'https://yandex.eu/search',
+        paramName: 'text',
+        logo: 'https://yandex.eu/favicon.ico'
+    },
+    metaso: {
+        name: 'Metaso',
+        url: 'https://metaso.cn/',
+        paramName: 'q',
+        logo: 'https://metaso.cn/favicon.ico'
     }
 };
 
@@ -61,8 +97,8 @@ function loadDefaultEngine() {
 // Set daily Bing background
 function setDailyBingBackground() {
     // Fetch Bing daily image
-    const bingImageUrl = `https://www.bing.com/HPImageArchive.aspx?format=js&idx=1&n=1`;
-    
+    const bingImageUrl = `https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1`;
+
     // Use a proxy to avoid CORS issues
     fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(bingImageUrl)}`)
         .then(response => response.json())
@@ -71,7 +107,7 @@ function setDailyBingBackground() {
             if (bingData && bingData.images && bingData.images.length > 0) {
                 const imageData = bingData.images[0];
                 const imageUrl = `https://www.bing.com${imageData.url}`;
-                
+
                 // Set as background
                 document.body.style.backgroundImage = `url('${imageUrl}')`;
                 document.body.style.backgroundSize = 'cover';
@@ -98,27 +134,27 @@ function setupTransparentUI() {
         container.classList.remove('bg-white');
         container.classList.add('glass-morphism');
     });
-    
+
     // Add glass morphism to bookmark cards
     const bookmarkCards = document.querySelectorAll('.card-hover');
     bookmarkCards.forEach(card => {
         card.classList.add('glass-bookmark');
     });
-    
+
     // Style the search form for transparency
     const searchContainer = document.querySelector('#searchForm').parentElement;
     searchContainer.classList.add('search-container-glass');
-    
+
     // Style search input for transparency
     const searchInputElem = document.querySelector('#searchInput');
     searchInputElem.classList.add('glass-input');
-    
+
     // Apply glass effect to engine buttons
     const engineButtonElements = document.querySelectorAll('.engine-button');
     engineButtonElements.forEach(btn => {
         btn.classList.add('glass-button');
     });
-    
+
     // Add CSS rules for glass morphism
     const style = document.createElement('style');
     style.textContent = `
@@ -262,13 +298,13 @@ function highlightSelectedEngine() {
 // Bookmark Category Collapse/Expand Function
 function setupBookmarkCategories() {
     const categoryHeaders = document.querySelectorAll('.category-header');
-    
+
     categoryHeaders.forEach(header => {
-        header.addEventListener('click', function() {
+        header.addEventListener('click', function () {
             const category = this.getAttribute('data-category');
             const content = this.nextElementSibling;
             const icon = this.querySelector('.category-icon');
-            
+
             if (content.style.display === 'none') {
                 content.style.display = 'grid';
                 icon.style.transform = 'rotate(0deg)';
@@ -279,13 +315,13 @@ function setupBookmarkCategories() {
                 localStorage.setItem(`category_${category}`, 'closed');
             }
         });
-        
+
         // Initial state: expanded based on local storage or default settings.
         const category = header.getAttribute('data-category');
         const savedState = localStorage.getItem(`category_${category}`);
         const content = header.nextElementSibling;
         const icon = header.querySelector('.category-icon');
-        
+
         if (savedState === 'closed') {
             content.style.display = 'none';
             icon.style.transform = 'rotate(-90deg)';
@@ -293,27 +329,27 @@ function setupBookmarkCategories() {
             content.style.display = 'grid';
             icon.style.transform = 'rotate(0deg)';
         }
-        
+
         icon.style.transition = 'transform 0.3s ease';
     });
 }
 
 // Handle search form submission
-searchForm.addEventListener('submit', function(e) {
+searchForm.addEventListener('submit', function (e) {
     e.preventDefault();
     const query = searchInput.value.trim();
-    
+
     if (!query) return;
-    
+
     const engine = searchEngines[currentEngine];
     const url = new URL(engine.url);
     url.searchParams.append(engine.paramName, query);
-    
+
     window.open(url.toString(), '_blank');
 });
 
 // Handle search engine selection
-engineSelector.addEventListener('click', function(e) {
+engineSelector.addEventListener('click', function (e) {
     const button = e.target.closest('.engine-button');
     if (button) {
         currentEngine = button.getAttribute('data-engine');
@@ -324,13 +360,13 @@ engineSelector.addEventListener('click', function(e) {
 
 // Home button functionality
 if (homeBtn) {
-    homeBtn.addEventListener('click', function() {
+    homeBtn.addEventListener('click', function () {
         window.location.reload();
     });
 }
 
 // Add keyboard shortcuts for enhanced UX
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function (e) {
     // Alt+S to focus search input
     if (e.altKey && e.key === 's') {
         e.preventDefault();
@@ -344,6 +380,6 @@ if (window.history.replaceState) {
 }
 
 // Initialize the application when DOM is fully loaded
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     init();
 });
